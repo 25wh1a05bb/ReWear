@@ -1,0 +1,396 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ReWear | Sustainable Fashion</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f1f8f3;
+            color: #1f2f24;
+        }
+
+        /* NAVIGATION */
+
+        nav {
+            background: #145a32;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 27px;
+            font-weight: bold;
+        }
+
+        nav div:last-child {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .welcome {
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .logout {
+            background: white;
+            color: #145a32 !important;
+            padding: 9px 16px;
+            border-radius: 7px;
+            font-weight: bold;
+        }
+
+        .logout:hover {
+            text-decoration: none;
+            background: #e8f5e9;
+        }
+
+        /* HERO SECTION */
+
+        .hero {
+            text-align: center;
+            padding: 95px 20px 70px;
+            min-height: 480px;
+        }
+
+        .hero h1 {
+            color: #145a32;
+            font-size: 44px;
+            margin-bottom: 15px;
+        }
+
+        .hero .recycle {
+            font-size: 42px;
+            margin-bottom: 25px;
+        }
+
+        .hero p {
+            max-width: 850px;
+            margin: auto;
+            font-size: 23px;
+            line-height: 1.65;
+            color: #18251c;
+        }
+
+        .shop-btn {
+            display: inline-block;
+            margin-top: 35px;
+            background: #145a32;
+            color: white;
+            text-decoration: none;
+            padding: 16px 30px;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .shop-btn:hover {
+            background: #0d4727;
+        }
+
+        /* TRENDING SECTION */
+
+        .trending {
+            background: white;
+            padding: 60px 7%;
+            text-align: center;
+        }
+
+        .trending h2 {
+            color: #145a32;
+            font-size: 32px;
+            margin-bottom: 35px;
+        }
+
+        .products {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .product-card {
+            width: 260px;
+            background: #f5faf6;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+        }
+
+        .product-image {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        .product-card h3 {
+            color: #174d2c;
+            margin-bottom: 12px;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #145a32;
+            color: white;
+            text-align: center;
+            padding: 22px;
+            margin-top: 0;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            nav {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav div:last-child {
+                justify-content: center;
+                gap: 12px;
+            }
+
+            nav a {
+                font-size: 15px;
+            }
+
+            .welcome {
+                font-size: 15px;
+            }
+
+            .hero {
+                padding: 65px 15px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVIGATION -->
+
+    <nav>
+
+        <div class="logo">
+            ReWear ♻️
+        </div>
+
+
+        <div>
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/shop">
+                Shop
+            </a>
+
+            <a href="/cart">
+                Cart 🛒
+            </a>
+
+            <a href="/sell">
+                Sell
+            </a>
+
+
+            {% if session.get("user_id") %}
+
+                <a href="/orders">
+                    My Orders
+                </a>
+
+                <span class="welcome">
+                    Welcome, {{ session.get("user_name") }} 👋
+                </span>
+
+                <a href="/logout" class="logout">
+                    Logout
+                </a>
+
+            {% else %}
+
+                <a href="/login">
+                    Login
+                </a>
+
+                <a href="/register">
+                    Register
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <h1>
+            Give Fashion A Second Life
+        </h1>
+
+        <div class="recycle">
+            ♻️
+        </div>
+
+        <p>
+            ReWear is a sustainable fashion marketplace where you
+            can buy and sell pre-loved clothes and accessories.
+            Save money, reduce waste, and make fashion more
+            sustainable.
+        </p>
+
+        <a href="/shop" class="shop-btn">
+            Explore Shop →
+        </a>
+
+    </section>
+
+
+
+    <!-- TRENDING PRODUCTS -->
+
+    <section class="trending">
+
+        <h2>
+            Trending Pre-Loved Items 🛍️
+        </h2>
+
+
+        <div class="products">
+
+
+            <div class="product-card">
+
+                <div class="product-image">
+                    👕
+                </div>
+
+                <h3>
+                    Classic White Shirt
+                </h3>
+
+                <div class="price">
+                    ₹299
+                </div>
+
+            </div>
+
+
+
+            <div class="product-card">
+
+                <div class="product-image">
+                    👖
+                </div>
+
+                <h3>
+                    Blue Denim Jeans
+                </h3>
+
+                <div class="price">
+                    ₹499
+                </div>
+
+            </div>
+
+
+
+            <div class="product-card">
+
+                <div class="product-image">
+                    👜
+                </div>
+
+                <h3>
+                    Casual Handbag
+                </h3>
+
+                <div class="price">
+                    ₹399
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 ReWear ♻️ | Give Fashion A Second Life
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>
+```

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>{{ product.name }} | ReWear</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f4f8f4;
+            color: #333;
+        }
+
+
+        nav {
+            background: #1f5c3a;
+            padding: 18px 40px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+
+        nav h2 {
+            margin: 0;
+        }
+
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+
+        .product-box {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+
+        .product-image {
+            background: #e8f3eb;
+            min-height: 450px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 100px;
+            overflow: hidden;
+        }
+
+
+        .product-image img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+
+        h1 {
+            color: #1f5c3a;
+            margin-top: 0;
+        }
+
+
+        .price {
+            font-size: 30px;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+
+        .section {
+            margin-top: 25px;
+        }
+
+
+        .section h3 {
+            color: #1f5c3a;
+        }
+
+
+        .details {
+            line-height: 1.8;
+        }
+
+
+        .button {
+            display: inline-block;
+            background: #1f5c3a;
+            color: white;
+            text-decoration: none;
+            padding: 14px 25px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+
+        .button:hover {
+            background: #16472d;
+        }
+
+
+        .rent-box {
+            background: #f0f8f2;
+            padding: 18px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+
+        @media(max-width: 750px) {
+
+            .product-box {
+                grid-template-columns: 1fr;
+            }
+
+            .product-image {
+                min-height: 300px;
+            }
+
+            .product-image img {
+                height: 300px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<nav>
+
+    <h2>ReWear ♻️</h2>
+
+    <div>
+
+        <a href="/">Home</a>
+
+        <a href="/shop">Shop</a>
+
+        <a href="/cart">Cart</a>
+
+        <a href="/sell">Sell</a>
+
+        <a href="/orders">My Orders</a>
+
+    </div>
+
+</nav>
+
+
+
+<div class="container">
+
+
+    <div class="product-box">
+
+
+        <!-- PRODUCT IMAGE -->
+
+        <div class="product-image">
+
+            {% if product.image1 %}
+
+                <img
+                    src="{{ url_for('static', filename='uploads/' + product.image1) }}"
+                    alt="{{ product.name }}"
+                >
+
+            {% else %}
+
+                👗
+
+            {% endif %}
+
+        </div>
+
+
+
+        <!-- PRODUCT INFORMATION -->
+
+        <div>
+
+
+            <h1>
+                {{ product.name }}
+            </h1>
+
+
+            <div class="price">
+
+                ₹{{ product.price }}
+
+            </div>
+
+
+
+            <!-- BASIC DETAILS -->
+
+            <div class="section">
+
+                <h3>
+                    📋 Outfit Details
+                </h3>
+
+
+                <div class="details">
+
+
+                    {% if product.category %}
+
+                    <b>Category:</b>
+                    {{ product.category }}
+
+                    <br>
+
+                    {% endif %}
+
+
+
+                    {% if product.outfit_type %}
+
+                    <b>Type:</b>
+                    {{ product.outfit_type }}
+
+                    <br>
+
+                    {% endif %}
+
+
+
+                    {% if product.fabric %}
+
+                    <b>Fabric:</b>
+                    {{ product.fabric }}
+
+                    <br>
+
+                    {% endif %}
+
+
+
+                    {% if product.pattern %}
+
+                    <b>Pattern:</b>
+                    {{ product.pattern }}
+
+                    <br>
+
+                    {% endif %}
+
+
+
+                    {% if product.size %}
+
+                    <b>Size:</b>
+                    {{ product.size }}
+
+                    <br>
+
+                    {% endif %}
+
+
+
+                    {% if product.sleeve %}
+
+                    <b>Sleeves:</b>
+                    {{ product.sleeve }}
+
+                    <br>
+
+                    {% endif %}
+
+
+
+                    {% if product.original_price %}
+
+                    <b>Original Price:</b>
+                    ₹{{ product.original_price }}
+
+                    <br>
+
+                    {% endif %}
+
+
+
+                    {% if product.times_worn %}
+
+                    <b>Times Worn:</b>
+                    {{ product.times_worn }}
+
+                    <br>
+
+                    {% endif %}
+
+
+
+                    {% if product.occasions %}
+
+                    <b>Perfect For:</b>
+                    {{ product.occasions }}
+
+                    <br>
+
+                    {% endif %}
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- OUTFIT STORY -->
+
+            {% if product.description %}
+
+            <div class="section">
+
+                <h3>
+                    💚 About This Outfit
+                </h3>
+
+                <p>
+                    {{ product.description }}
+                </p>
+
+            </div>
+
+            {% endif %}
+
+
+
+            <!-- SOURCE -->
+
+            {% if product.source %}
+
+            <div class="section">
+
+                <h3>
+                    🛍️ Where It Came From
+                </h3>
+
+                <p>
+                    {{ product.source }}
+                </p>
+
+            </div>
+
+            {% endif %}
+
+
+
+            <!-- RENTAL INFORMATION -->
+
+            {% if product.rental_price %}
+
+            <div class="rent-box">
+
+                <h3>
+                    👗 Rental Option
+                </h3>
+
+
+                <p>
+
+                    <b>Rental Price:</b>
+
+                    ₹{{ product.rental_price }}
+
+                </p>
+
+
+                {% if product.rental_duration %}
+
+                <p>
+
+                    <b>Duration:</b>
+
+                    {{ product.rental_duration }}
+
+                </p>
+
+                {% endif %}
+
+
+                {% if product.security_deposit %}
+
+                <p>
+
+                    <b>Security Deposit:</b>
+
+                    ₹{{ product.security_deposit }}
+
+                </p>
+
+                {% endif %}
+
+
+                {% if product.available_from %}
+
+                <p>
+
+                    <b>Available From:</b>
+
+                    {{ product.available_from }}
+
+                </p>
+
+                {% endif %}
+
+
+                {% if product.available_to %}
+
+                <p>
+
+                    <b>Available Until:</b>
+
+                    {{ product.available_to }}
+
+                </p>
+
+                {% endif %}
+
+            </div>
+
+            {% endif %}
+
+
+
+            <!-- BUY BUTTON -->
+
+            <a
+                class="button"
+                href="/add_to_cart/{{ product.id }}"
+            >
+
+                🛒 Add to Cart
+
+            </a>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</body>
+
+</html>

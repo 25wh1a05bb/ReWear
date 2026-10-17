@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ReWear | My Orders</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f8f5;
+            color: #26382b;
+        }
+
+        nav {
+            background: #174d2c;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        nav div:last-child {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .welcome {
+            color: white;
+            font-weight: bold;
+        }
+
+        .logout {
+            background: white;
+            color: #174d2c !important;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 85%;
+            max-width: 900px;
+            margin: 45px auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #174d2c;
+            margin-bottom: 35px;
+        }
+
+        .order-card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 15px;
+            margin-bottom: 18px;
+        }
+
+        .order-header h2 {
+            color: #174d2c;
+            font-size: 20px;
+        }
+
+        .payment {
+            background: #e8f3ea;
+            color: #174d2c;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .order-info {
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .order-info p {
+            margin-top: 3px;
+        }
+
+        .product {
+            background: #f5f8f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .total {
+            border-top: 1px solid #ccc;
+            margin-top: 15px;
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 20px;
+            font-weight: bold;
+            color: #174d2c;
+        }
+
+        .empty {
+            background: white;
+            text-align: center;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+        }
+
+        .empty h2 {
+            color: #174d2c;
+            margin-bottom: 10px;
+        }
+
+        .shop-btn {
+            display: inline-block;
+            margin-top: 20px;
+            background: #174d2c;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        footer {
+            margin-top: 70px;
+            background: #174d2c;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media (max-width: 700px) {
+
+            nav {
+                flex-direction: column;
+            }
+
+            nav div:last-child {
+                justify-content: center;
+                gap: 12px;
+            }
+
+            .order-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .product {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <nav>
+
+        <div class="logo">
+            ReWear ♻️
+        </div>
+
+
+        <div>
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/shop">
+                Shop
+            </a>
+
+            <a href="/cart">
+                Cart 🛒
+            </a>
+
+            <a href="/sell">
+                Sell
+            </a>
+
+
+            {% if session.get("user_id") %}
+
+                <a href="/orders">
+                    My Orders
+                </a>
+
+                <span class="welcome">
+                    Welcome, {{ session.get("user_name") }} 👋
+                </span>
+
+                <a href="/logout" class="logout">
+                    Logout
+                </a>
+
+            {% else %}
+
+                <a href="/login">
+                    Login
+                </a>
+
+                <a href="/register">
+                    Register
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </nav>
+
+
+    <div class="container">
+
+        <h1>
+            My Orders 🧾
+        </h1>
+
+
+        {% if orders %}
+
+            {% for order in orders %}
+
+            <div class="order-card">
+
+
+                <div class="order-header">
+
+                    <h2>
+                        Order #{{ order["id"] }}
+                    </h2>
+
+                    <span class="payment">
+                        {{ order["payment_method"] }}
+                    </span>
+
+                </div>
+
+
+                <div class="order-info">
+
+                    <strong>
+                        Delivery Details
+                    </strong>
+
+                    <p>
+                        {{ order["customer_name"] }}
+                    </p>
+
+                    <p>
+                        {{ order["address"] }},
+                        {{ order["city"] }}
+                        -
+                        {{ order["pin_code"] }}
+                    </p>
+
+                    <p>
+                        📞 {{ order["phone"] }}
+                    </p>
+
+                </div>
+
+
+                <strong>
+                    Products
+                </strong>
+
+
+                {% for item in order["order_products"] %}
+
+                <div class="product">
+
+                    <span>
+                        {{ item["name"] }}
+                        ×
+                        {{ item["quantity"] }}
+                    </span>
+
+                    <span>
+                        ₹{{ item["price"] * item["quantity"] }}
+                    </span>
+
+                </div>
+
+                {% endfor %}
+
+
+                <div class="total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <span>
+                        ₹{{ order["total"] }}
+                    </span>
+
+                </div>
+
+
+            </div>
+
+            {% endfor %}
+
+
+        {% else %}
+
+            <div class="empty">
+
+                <h2>
+                    No orders yet 🛍️
+                </h2>
+
+                <p>
+                    Your completed orders will appear here.
+                </p>
+
+                <a href="/shop" class="shop-btn">
+                    Start Shopping →
+                </a>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+
+    <footer>
+
+        <p>
+            © 2026 ReWear ♻️ | Give Fashion A Second Life
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>

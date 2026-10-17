@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ReWear | Login</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f8f5;
+            color: #26382b;
+        }
+
+        nav {
+            background: #174d2c;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+        }
+
+        .container {
+            width: 85%;
+            max-width: 500px;
+            margin: 50px auto;
+        }
+
+        .login-box {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            text-align: center;
+            color: #174d2c;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #666;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 18px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #174d2c;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: #174d2c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        .login-btn:hover {
+            background: #0e3820;
+        }
+
+        .register-text {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .register-text a {
+            color: #174d2c;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        footer {
+            margin-top: 70px;
+            background: #174d2c;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media (max-width: 700px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin-left: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">ReWear ♻️</div>
+
+        <div>
+            <a href="/">Home</a>
+            <a href="/shop">Shop</a>
+            <a href="/cart">Cart 🛒</a>
+            <a href="/sell">Sell</a>
+            <a href="/register">Register</a>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div class="login-box">
+
+            <h1>Welcome Back 👋</h1>
+
+            <p class="subtitle">
+                Login to your ReWear account ♻️
+            </p>
+
+            <form action="/login" method="POST">
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required
+                >
+
+                <button type="submit" class="login-btn">
+                    Login 🔐
+                </button>
+
+            </form>
+
+            <p class="register-text">
+                Don't have an account?
+                <a href="/register">Create Account</a>
+            </p>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© 2026 ReWear ♻️ | Give Fashion A Second Life</p>
+    </footer>
+
+</body>
+</html>
