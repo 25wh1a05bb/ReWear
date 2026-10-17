@@ -1,1689 +1,354 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>ReWear | List Your Outfit</title>
-
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-
-
-        body {
-            background: #fff8f5;
-            color: #333;
-        }
-
-
-        /* ================= NAVBAR ================= */
-
-        nav {
-            background: #33243d;
-            padding: 18px 7%;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-
-        .logo {
-            color: white;
-            font-size: 25px;
-            font-weight: bold;
-        }
-
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 22px;
-        }
-
-
-        nav a:hover {
-            color: #ffb6c9;
-        }
-
-
-        /* ================= HEADER ================= */
-
-        .page-header {
-            text-align: center;
-            padding: 45px 20px 25px;
-        }
-
-
-        .page-header h1 {
-            font-size: 38px;
-            color: #33243d;
-            margin-bottom: 10px;
-        }
-
-
-        .page-header p {
-            color: #756b72;
-            font-size: 17px;
-        }
-
-
-        /* ================= FORM ================= */
-
-        .form-container {
-            width: 90%;
-            max-width: 1000px;
-            margin: 20px auto 60px;
-        }
-
-
-        .form-section {
-            background: white;
-            border-radius: 18px;
-            padding: 30px;
-            margin-bottom: 25px;
-
-            box-shadow:
-                0 5px 20px rgba(0,0,0,0.07);
-        }
-
-
-        .form-section h2 {
-            color: #33243d;
-            margin-bottom: 8px;
-        }
-
-
-        .section-description {
-            color: #777;
-            margin-bottom: 25px;
-        }
-
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-
-        .full {
-            grid-column: 1 / -1;
-        }
-
-
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 8px;
-            color: #40333f;
-        }
-
-
-        input,
-        select,
-        textarea {
-            width: 100%;
-            padding: 13px;
-
-            border: 1px solid #ddd;
-            border-radius: 9px;
-
-            font-size: 15px;
-            background: #fffdfc;
-        }
-
-
-        input:focus,
-        select:focus,
-        textarea:focus {
-            outline: none;
-
-            border-color: #e78da6;
-
-            box-shadow:
-                0 0 0 3px rgba(231,141,166,0.15);
-        }
-
-
-        textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-
-        /* ================= CATEGORY BOX ================= */
-
-        .category-note {
-            background: #f2eafa;
-            border-left: 5px solid #9b72b0;
-
-            padding: 15px;
-            border-radius: 8px;
-
-            margin-bottom: 20px;
-            color: #57465f;
-        }
-
-
-        .subcategory-note {
-            margin-top: 8px;
-            color: #777;
-            font-size: 13px;
-        }
-
-
-        /* ================= PHOTOS ================= */
-
-        .photo-box {
-            border: 2px dashed #e7a1b4;
-
-            background: #fff4f7;
-
-            border-radius: 15px;
-            padding: 30px;
-
-            text-align: center;
-        }
-
-
-        .photo-box h3 {
-            color: #33243d;
-            margin-bottom: 8px;
-        }
-
-
-        .photo-box p {
-            color: #777;
-            margin-bottom: 18px;
-        }
-
-
-        .photo-box input {
-            background: white;
-            border: 1px solid #ddd;
-        }
-
-
-        .photo-note {
-            font-size: 13px;
-            margin-top: 10px;
-            color: #888;
-        }
-
-
-        /* ================= LISTING ================= */
-
-        .listing-options {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-top: 10px;
-        }
-
-
-        .listing-option {
-            flex: 1;
-            min-width: 150px;
-
-            border: 2px solid #eee;
-            border-radius: 12px;
-
-            padding: 15px;
-
-            cursor: pointer;
-            background: #fff;
-        }
-
-
-        .listing-option:hover {
-            border-color: #e78da6;
-            background: #fff5f7;
-        }
-
-
-        .listing-option input {
-            width: auto;
-            margin-right: 8px;
-        }
-
-
-        .listing-option strong {
-            color: #33243d;
-        }
-
-
-        /* ================= RENTAL ================= */
-
-        .rental-box {
-            background: #fff4e8;
-
-            border-left: 5px solid #f0a35b;
-
-            padding: 20px;
-
-            border-radius: 12px;
-            margin-top: 20px;
-        }
-
-
-        .rental-box h3 {
-            color: #8b5224;
-            margin-bottom: 15px;
-        }
-
-
-        /* ================= SUBMIT ================= */
-
-        .submit-button {
-            width: 100%;
-
-            border: none;
-
-            padding: 16px;
-
-            border-radius: 10px;
-
-            background: #e66f8d;
-            color: white;
-
-            font-size: 17px;
-            font-weight: bold;
-
-            cursor: pointer;
-        }
-
-
-        .submit-button:hover {
-            background: #d95878;
-        }
-
-
-        /* ================= FOOTER ================= */
-
-        footer {
-            background: #33243d;
-            color: white;
-
-            text-align: center;
-            padding: 20px;
-        }
-
-
-        /* ================= MOBILE ================= */
-
-        @media(max-width: 750px) {
-
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-
-
-            .full {
-                grid-column: auto;
-            }
-
-
-            nav {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-
-            .listing-options {
-                flex-direction: column;
-            }
-
-        }
-
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ReWear | List Your Outfit</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{background:#fff8f5;color:#333}
+nav{background:#33243d;padding:18px 7%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px}
+.logo{color:white;font-size:25px;font-weight:bold}
+nav a{color:white;text-decoration:none;margin-left:22px}
+nav a:hover{color:#ffb6c9}
+.page-header{text-align:center;padding:45px 20px 25px}
+.page-header h1{font-size:38px;color:#33243d;margin-bottom:10px}
+.page-header p{color:#756b72;font-size:17px}
+.form-container{width:90%;max-width:1000px;margin:20px auto 60px}
+.form-section{background:white;border-radius:18px;padding:30px;margin-bottom:25px;box-shadow:0 5px 20px rgba(0,0,0,.07)}
+.form-section h2{color:#33243d;margin-bottom:8px}
+.section-description{color:#777;margin-bottom:25px}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.full{grid-column:1/-1}
+label{display:block;font-weight:bold;margin-bottom:8px;color:#40333f}
+input:not([type=radio]):not([type=checkbox]),select,textarea{width:100%;padding:13px;border:1px solid #ddd;border-radius:9px;font-size:15px;background:#fffdfc}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#e78da6;box-shadow:0 0 0 3px rgba(231,141,166,.15)}
+textarea{min-height:120px;resize:vertical}
+.category-note{background:#f2eafa;border-left:5px solid #9b72b0;padding:15px;border-radius:8px;margin-bottom:20px;color:#57465f}
+.subcategory-note{margin-top:8px;color:#777;font-size:13px}
+.photo-box{border:2px dashed #e7a1b4;background:#fff4f7;border-radius:15px;padding:30px;text-align:center}
+.photo-box h3{color:#33243d;margin-bottom:8px}
+.photo-box p{color:#777;margin-bottom:18px}
+.photo-note{font-size:13px;margin-top:10px;color:#888}
+.listing-options{display:flex;gap:15px;flex-wrap:wrap;margin-top:10px}
+.listing-option{flex:1;min-width:150px;border:2px solid #eee;border-radius:12px;padding:15px;cursor:pointer;background:#fff;line-height:1.7}
+.listing-option:hover{border-color:#e78da6;background:#fff5f7}
+.listing-option input{width:auto;margin-right:8px}
+.listing-option strong{color:#33243d}
+.rental-box{background:#fff4e8;border-left:5px solid #f0a35b;padding:20px;border-radius:12px;margin-top:20px}
+.rental-box h3{color:#8b5224;margin-bottom:15px}
+.submit-button{width:100%;border:none;padding:16px;border-radius:10px;background:#e66f8d;color:white;font-size:17px;font-weight:bold;cursor:pointer}
+.submit-button:hover{background:#d95878}
+footer{background:#33243d;color:white;text-align:center;padding:20px}
+@media(max-width:750px){.form-grid{grid-template-columns:1fr}.full{grid-column:auto}nav{flex-direction:column}.listing-options{flex-direction:column}.page-header h1{font-size:30px}}
+</style>
 </head>
 
-
 <body>
-
-
-<!-- ================= NAVBAR ================= -->
-
 <nav>
-
-    <div class="logo">
-        ReWear ♻️
-    </div>
-
-
+    <div class="logo">ReWear ♻️</div>
     <div>
-
-        <a href="/">
-            Home
-        </a>
-
-        <a href="/shop">
-            Shop
-        </a>
-
-        <a href="/cart">
-            Cart 🛒
-        </a>
-
-        <a href="/sell">
-            Sell
-        </a>
-
-
+        <a href="/">Home</a>
+        <a href="/shop">Shop</a>
+        <a href="/cart">Cart 🛒</a>
+        <a href="/sell">Sell</a>
         {% if session.get("user_id") %}
-
-            <a href="/orders">
-                My Orders
-            </a>
-
-            <a href="/logout">
-                Logout
-            </a>
-
+            <a href="/orders">My Orders</a>
+            <a href="/logout">Logout</a>
         {% else %}
-
-            <a href="/login">
-                Login
-            </a>
-
+            <a href="/login">Login</a>
         {% endif %}
-
     </div>
-
 </nav>
 
-
-
-<!-- ================= HEADER ================= -->
-
 <section class="page-header">
-
-    <h1>
-        List Your Outfit ✨
-    </h1>
-
-    <p>
-        Give your favourite outfit another journey through ReWear.
-    </p>
-
+    <h1>List Your Outfit ✨</h1>
+    <p>Give your favourite outfit another journey through ReWear.</p>
 </section>
-
-
 
 <div class="form-container">
 
+<form action="/sell" method="POST" enctype="multipart/form-data">
 
-<!-- ================= PHOTOS ================= -->
-
-<div class="form-section">
-
-    <h2>
-        📸 Outfit Photos
-    </h2>
-
-    <p class="section-description">
-        Upload clear photos so buyers and renters can see the outfit properly.
-    </p>
-
-
-    <div class="photo-box">
-
-        <h3>
-            Add photos of your outfit
-        </h3>
-
-        <p>
-            Front, back, details and a styled/worn photo are recommended.
-        </p>
-
-
-        <input
-            type="file"
-            name="images"
-            accept="image/*"
-            multiple
-        >
-
-
-        <p class="photo-note">
-            You can upload up to 4 photos.
-        </p>
-
+    <div class="form-section">
+        <h2>📸 Outfit Photos</h2>
+        <p class="section-description">Upload clear photos so buyers and renters can see the outfit properly.</p>
+        <div class="photo-box">
+            <h3>Add photos of your outfit</h3>
+            <p>Front, back, details and a styled/worn photo are recommended.</p>
+            <input type="file" name="images" accept="image/png,image/jpeg,image/webp" multiple>
+            <p class="photo-note">You can upload up to 4 photos.</p>
+        </div>
     </div>
 
-</div>
-
-
-
-<!-- ================= BASIC INFORMATION ================= -->
-
-<div class="form-section">
-
-    <h2>
-        👗 Basic Information
-    </h2>
-
-    <p class="section-description">
-        Tell us what you're listing.
-    </p>
-
-
-    <div class="category-note">
-
-        <strong>💡 Choose your category carefully.</strong>
-
-        <br>
-
-        Your category and type help buyers find your outfit
-        in the right section of ReWear.
-
-    </div>
-
-
-    <div class="form-grid">
-
-
-        <!-- NAME -->
-
-        <div>
-
-            <label>
-                Outfit Name
-            </label>
-
-            <input
-                type="text"
-                name="name"
-                placeholder="Example: Black Bodycon Dress"
-                required
-            >
-
-        </div>
-
-
-
-        <!-- CATEGORY -->
-
-        <div>
-
-            <label>
-                Main Category
-            </label>
-
-            <select
-                name="category"
-                id="category"
-                required
-            >
-
-                <option value="">
-                    Select category
-                </option>
-
-                <option value="Dresses">
-                    👗 Dresses
-                </option>
-
-                <option value="Tops">
-                    👚 Tops
-                </option>
-
-                <option value="Shirts">
-                    👔 Shirts
-                </option>
-
-                <option value="Jeans">
-                    👖 Jeans
-                </option>
-
-                <option value="Bottomwear">
-                    👖 Bottomwear
-                </option>
-
-                <option value="Ethnic Wear">
-                    🥻 Ethnic Wear
-                </option>
-
-                <option value="Outerwear">
-                    🧥 Outerwear
-                </option>
-
-                <option value="Accessories">
-                    👜 Accessories
-                </option>
-
-                <option value="Footwear">
-                    👟 Footwear
-                </option>
-
-            </select>
-
-        </div>
-
-
-
-        <!-- SUBCATEGORY -->
-
-        <div>
-
-            <label>
-                Type / Style
-            </label>
-
-            <select
-                name="subcategory"
-                id="subcategory"
-                required
-            >
-
-                <option value="">
-                    Select category first
-                </option>
-
-            </select>
-
-
-            <div class="subcategory-note">
-
-                Example:
-                Dresses → Bodycon,
-                Jeans → Baggy,
-                Tops → Halter
-
-            </div>
-
-        </div>
-
-
-
-        <!-- FABRIC -->
-
-        <div>
-
-            <label>
-                Fabric / Material
-            </label>
-
-            <select
-                name="fabric"
-                id="fabric"
-            >
-
-                <option value="">
-                    Select fabric
-                </option>
-
-            </select>
-
-        </div>
-
-
-
-        <!-- PATTERN -->
-
-        <div>
-
-            <label>
-                Pattern / Design
-            </label>
-
-            <select
-                name="pattern"
-                id="pattern"
-            >
-
-                <option value="">
-                    Select design
-                </option>
-
-            </select>
-
-        </div>
-
-
-
-        <!-- SIZE -->
-
-        <div>
-
-            <label>
-                Size
-            </label>
-
-            <select name="size">
-
-                <option value="">
-                    Select size
-                </option>
-
-                <option>XXS</option>
-                <option>XS</option>
-                <option>S</option>
-                <option>M</option>
-                <option>L</option>
-                <option>XL</option>
-                <option>XXL</option>
-                <option>XXXL</option>
-                <option>Free Size</option>
-
-            </select>
-
-        </div>
-
-
-
-        <!-- SLEEVE -->
-
-        <div>
-
-            <label>
-                Sleeve / Neck / Style
-            </label>
-
-            <select name="sleeve">
-
-                <option value="">
-                    Select
-                </option>
-
-                <option>
-                    Sleeveless
-                </option>
-
-                <option>
-                    Half Sleeve
-                </option>
-
-                <option>
-                    Full Sleeve
-                </option>
-
-                <option>
-                    Puff Sleeve
-                </option>
-
-                <option>
-                    Bell Sleeve
-                </option>
-
-                <option>
-                    Off Shoulder
-                </option>
-
-                <option>
-                    One Shoulder
-                </option>
-
-                <option>
-                    Strap
-                </option>
-
-                <option>
-                    Spaghetti Strap
-                </option>
-
-            </select>
-
-        </div>
-
-
-
-        <!-- OCCASION -->
-
-        <div>
-
-            <label>
-                Best For
-            </label>
-
-            <select name="occasion">
-
-                <option value="">
-                    Select occasion
-                </option>
-
-                <option>Casual</option>
-                <option>College</option>
-                <option>Work / Formal</option>
-                <option>Birthday</option>
-                <option>Party</option>
-                <option>Farewell</option>
-                <option>Date Night</option>
-                <option>Photoshoot</option>
-                <option>Festival</option>
-                <option>Engagement</option>
-                <option>Wedding</option>
-                <option>Reception</option>
-                <option>Travel</option>
-                <option>Other</option>
-
-            </select>
-
-        </div>
-
-
-    </div>
-
-</div>
-
-
-
-<!-- ================= STORY ================= -->
-
-<div class="form-section">
-
-    <h2>
-        💌 Tell Its Story
-    </h2>
-
-    <p class="section-description">
-        Give the next person a little story behind the outfit.
-    </p>
-
-
-    <div class="form-grid">
-
-
-        <div class="full">
-
-            <label>
-                About This Outfit
-            </label>
-
-            <textarea
-                name="description"
-                placeholder="Example: I bought this dress for my college farewell. I have worn it only twice and it is still in excellent condition."
-            ></textarea>
-
-        </div>
-
-
-
-        <div>
-
-            <label>
-                Where did you get it?
-            </label>
-
-            <input
-                type="text"
-                name="source"
-                placeholder="Example: Myntra / Store / Boutique"
-            >
-
-        </div>
-
-
-
-        <div>
-
-            <label>
-                Times Worn
-            </label>
-
-            <input
-                type="number"
-                name="times_worn"
-                min="0"
-                placeholder="Example: 2"
-            >
-
-        </div>
-
-
-    </div>
-
-</div>
-
-
-
-<!-- ================= PRICING ================= -->
-
-<div class="form-section">
-
-    <h2>
-        💰 Pricing
-    </h2>
-
-
-    <div class="form-grid">
-
-
-        <div>
-
-            <label>
-                Original Price
-            </label>
-
-            <input
-                type="number"
-                name="original_price"
-                min="0"
-                placeholder="₹"
-            >
-
-        </div>
-
-
-
-        <div>
-
-            <label>
-                Selling Price
-            </label>
-
-            <input
-                type="number"
-                name="price"
-                min="0"
-                placeholder="₹"
-                required
-            >
-
-        </div>
-
-
-    </div>
-
-</div>
-
-
-
-<!-- ================= LISTING TYPE ================= -->
-
-<div class="form-section">
-
-    <h2>
-        🔄 How do you want to ReWear it?
-    </h2>
-
-    <p class="section-description">
-        Choose whether you want to sell, rent or offer both options.
-    </p>
-
-
-    <div class="listing-options">
-
-
-        <label class="listing-option">
-
-            <input
-                type="radio"
-                name="listing_type"
-                value="Sell"
-                checked
-            >
-
-            <strong>
-                🛍️ Sell
-            </strong>
-
-            <br>
-
-            Sell this outfit permanently.
-
-        </label>
-
-
-
-        <label class="listing-option">
-
-            <input
-                type="radio"
-                name="listing_type"
-                value="Rent"
-            >
-
-            <strong>
-                👗 Rent
-            </strong>
-
-            <br>
-
-            Let others wear it temporarily.
-
-        </label>
-
-
-
-        <label class="listing-option">
-
-            <input
-                type="radio"
-                name="listing_type"
-                value="Both"
-            >
-
-            <strong>
-                ♻️ Sell + Rent
-            </strong>
-
-            <br>
-
-            Give buyers both choices.
-
-        </label>
-
-
-    </div>
-
-
-
-    <!-- RENTAL INFORMATION -->
-
-    <div class="rental-box">
-
-        <h3>
-            👗 Rental Information
-        </h3>
-
+    <div class="form-section">
+        <h2>👗 Basic Information</h2>
+        <p class="section-description">Tell us what you're listing.</p>
+        <div class="category-note"><strong>💡 Choose your category carefully.</strong><br>Your category and type help buyers find your outfit in the right section of ReWear.</div>
 
         <div class="form-grid">
-
-
             <div>
-
-                <label>
-                    Rental Price
-                </label>
-
-                <input
-                    type="number"
-                    name="rental_price"
-                    min="0"
-                    placeholder="₹"
-                >
-
+                <label for="name">Outfit Name</label>
+                <input id="name" type="text" name="name" placeholder="Example: Black Bodycon Dress" required>
             </div>
 
-
-
             <div>
-
-                <label>
-                    Rental Duration
-                </label>
-
-                <select name="rental_duration">
-
-                    <option value="">
-                        Select duration
-                    </option>
-
-                    <option>5 Hours</option>
-                    <option>1 Day</option>
-                    <option>2 Days</option>
-                    <option>3 Days</option>
-                    <option>1 Week</option>
-
+                <label for="category">Main Category</label>
+                <select name="category" id="category" required>
+                    <option value="">Select category</option>
+                    <option value="Dresses">👗 Dresses</option>
+                    <option value="Tops">👚 Tops</option>
+                    <option value="Shirts">👔 Shirts</option>
+                    <option value="Jeans">👖 Jeans</option>
+                    <option value="Bottomwear">👖 Bottomwear</option>
+                    <option value="Ethnic Wear">🥻 Ethnic Wear</option>
+                    <option value="Outerwear">🧥 Outerwear</option>
+                    <option value="Accessories">👜 Accessories</option>
+                    <option value="Footwear">👟 Footwear</option>
                 </select>
-
             </div>
-
-
 
             <div>
-
-                <label>
-                    Security Deposit
-                </label>
-
-                <input
-                    type="number"
-                    name="security_deposit"
-                    min="0"
-                    placeholder="₹"
-                >
-
+                <label for="subcategory">Type / Style</label>
+                <select name="subcategory" id="subcategory" required>
+                    <option value="">Select category first</option>
+                </select>
+                <div class="subcategory-note">Example: Dresses → Bodycon, Jeans → Baggy, Tops → Halter</div>
             </div>
-
-
 
             <div>
-
-                <label>
-                    Available From
-                </label>
-
-                <input
-                    type="date"
-                    name="available_from"
-                >
-
+                <label for="fabric">Fabric / Material</label>
+                <select name="fabric" id="fabric">
+                    <option value="">Select fabric</option>
+                </select>
             </div>
-
-
 
             <div>
-
-                <label>
-                    Available Until
-                </label>
-
-                <input
-                    type="date"
-                    name="available_to"
-                >
-
+                <label for="pattern">Pattern / Design</label>
+                <select name="pattern" id="pattern">
+                    <option value="">Select design</option>
+                </select>
             </div>
 
+            <div>
+                <label for="size">Size</label>
+                <select name="size" id="size">
+                    <option value="">Select size</option>
+                    <option>XXS</option><option>XS</option><option>S</option>
+                    <option>M</option><option>L</option><option>XL</option>
+                    <option>XXL</option><option>XXXL</option><option>Free Size</option>
+                </select>
+            </div>
 
+            <div>
+                <label for="sleeve">Sleeve / Neck / Style</label>
+                <select name="sleeve" id="sleeve">
+                    <option value="">Select</option>
+                    <option>Sleeveless</option><option>Half Sleeve</option>
+                    <option>Full Sleeve</option><option>Puff Sleeve</option>
+                    <option>Bell Sleeve</option><option>Off Shoulder</option>
+                    <option>One Shoulder</option><option>Strap</option>
+                    <option>Spaghetti Strap</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="occasion">Best For</label>
+                <select name="occasion" id="occasion">
+                    <option value="">Select occasion</option>
+                    <option>Casual</option><option>College</option>
+                    <option>Work / Formal</option><option>Birthday</option>
+                    <option>Party</option><option>Farewell</option>
+                    <option>Date Night</option><option>Photoshoot</option>
+                    <option>Festival</option><option>Engagement</option>
+                    <option>Wedding</option><option>Reception</option>
+                    <option>Travel</option><option>Other</option>
+                </select>
+            </div>
         </div>
-
     </div>
 
+    <div class="form-section">
+        <h2>💌 Tell Its Story</h2>
+        <p class="section-description">Give the next person a little story behind the outfit.</p>
+        <div class="form-grid">
+            <div class="full">
+                <label for="description">About This Outfit</label>
+                <textarea id="description" name="description" placeholder="Example: I bought this dress for my college farewell. I have worn it only twice and it is still in excellent condition."></textarea>
+            </div>
+            <div>
+                <label for="source">Where did you get it?</label>
+                <input id="source" type="text" name="source" placeholder="Example: Myntra / Store / Boutique">
+            </div>
+            <div>
+                <label for="times_worn">Times Worn</label>
+                <input id="times_worn" type="number" name="times_worn" min="0" placeholder="Example: 2">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-section">
+        <h2>💰 Pricing</h2>
+        <div class="form-grid">
+            <div>
+                <label for="original_price">Original Price (₹)</label>
+                <input id="original_price" type="number" name="original_price" min="0" placeholder="₹">
+            </div>
+            <div>
+                <label for="price">Selling Price (₹)</label>
+                <input id="price" type="number" name="price" min="0" placeholder="₹" required>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-section">
+        <h2>🔄 How do you want to ReWear it?</h2>
+        <p class="section-description">Choose whether you want to sell, rent or offer both options.</p>
+
+        <div class="listing-options">
+            <label class="listing-option">
+                <input type="radio" name="listing_type" value="Sell" checked>
+                <strong>🛍️ Sell</strong><br>Sell this outfit permanently.
+            </label>
+            <label class="listing-option">
+                <input type="radio" name="listing_type" value="Rent">
+                <strong>👗 Rent</strong><br>Let others wear it temporarily.
+            </label>
+            <label class="listing-option">
+                <input type="radio" name="listing_type" value="Both">
+                <strong>♻️ Sell + Rent</strong><br>Give buyers both choices.
+            </label>
+        </div>
+
+        <div class="rental-box">
+            <h3>👗 Rental Information</h3>
+            <div class="form-grid">
+                <div>
+                    <label for="rental_price">Rental Price (₹)</label>
+                    <input id="rental_price" type="number" name="rental_price" min="0" placeholder="₹">
+                </div>
+                <div>
+                    <label for="rental_duration">Rental Duration</label>
+                    <select id="rental_duration" name="rental_duration">
+                        <option value="">Select duration</option>
+                        <option>5 Hours</option><option>1 Day</option>
+                        <option>2 Days</option><option>3 Days</option>
+                        <option>1 Week</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="security_deposit">Security Deposit (₹)</label>
+                    <input id="security_deposit" type="number" name="security_deposit" min="0" placeholder="₹">
+                </div>
+                <div>
+                    <label for="available_from">Available From</label>
+                    <input id="available_from" type="date" name="available_from">
+                </div>
+                <div>
+                    <label for="available_to">Available Until</label>
+                    <input id="available_to" type="date" name="available_to">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-section">
+        <button type="submit" class="submit-button">✨ List My Outfit on ReWear</button>
+    </div>
+
+</form>
 </div>
-
-
-
-<!-- ================= SUBMIT ================= -->
-
-<div class="form-section">
-
-    <button
-        type="submit"
-        class="submit-button"
-    >
-        ✨ List My Outfit on ReWear
-    </button>
-
-</div>
-
-
-</div>
-
-
 
 <footer>
-
-    <p>
-        © 2026 ReWear ♻️ | Give Fashion A Second Life
-    </p>
-
+    <p>© 2026 ReWear ♻️ | Give Fashion A Second Life</p>
 </footer>
 
-
-
-<!-- =========================================================
-     CATEGORY → SUBCATEGORY SYSTEM
-========================================================= -->
-
 <script>
-
-
-const category =
-    document.getElementById("category");
-
-const subcategory =
-    document.getElementById("subcategory");
-
-const fabric =
-    document.getElementById("fabric");
-
-const pattern =
-    document.getElementById("pattern");
-
-
+const category = document.getElementById("category");
+const subcategory = document.getElementById("subcategory");
+const fabric = document.getElementById("fabric");
+const pattern = document.getElementById("pattern");
 
 const categoryData = {
-
-
-    /* ================= DRESSES ================= */
-
     "Dresses": {
-
-        types: [
-
-            "Maxi Dress",
-            "Mini Dress",
-            "Midi Dress",
-            "Bodycon Dress",
-            "A-Line Dress",
-            "Wrap Dress",
-            "Slip Dress",
-            "Shirt Dress",
-            "Skater Dress",
-            "Fit & Flare Dress",
-            "Frock",
-            "Party Dress",
-            "Floral Dress",
-            "Co-ord Dress"
-
-        ],
-
-        fabrics: [
-
-            "Cotton",
-            "Chiffon",
-            "Georgette",
-            "Silk",
-            "Satin",
-            "Linen",
-            "Rayon",
-            "Velvet",
-            "Net",
-            "Organza"
-
-        ],
-
-        patterns: [
-
-            "Floral",
-            "Plain",
-            "Printed",
-            "Polka Dot",
-            "Striped",
-            "Checked",
-            "Embroidered",
-            "Sequined",
-            "Abstract"
-
-        ]
-
+        types: ["Maxi Dress","Mini Dress","Midi Dress","Bodycon Dress","A-Line Dress","Wrap Dress","Slip Dress","Shirt Dress","Skater Dress","Fit & Flare Dress","Frock","Party Dress","Floral Dress","Co-ord Dress"],
+        fabrics: ["Cotton","Chiffon","Georgette","Silk","Satin","Linen","Rayon","Velvet","Net","Organza"],
+        patterns: ["Floral","Plain","Printed","Polka Dot","Striped","Checked","Embroidered","Sequined","Abstract"]
     },
-
-
-    /* ================= TOPS ================= */
-
     "Tops": {
-
-        types: [
-
-            "Crop Top",
-            "Basic Top",
-            "Tank Top",
-            "Halter Top",
-            "Tube Top",
-            "Off-Shoulder Top",
-            "One-Shoulder Top",
-            "Peplum Top",
-            "Corset Top",
-            "Ruffle Top",
-            "Tunic",
-            "Oversized Top"
-
-        ],
-
-        fabrics: [
-
-            "Cotton",
-            "Satin",
-            "Chiffon",
-            "Linen",
-            "Denim",
-            "Rayon",
-            "Polyester"
-
-        ],
-
-        patterns: [
-
-            "Floral",
-            "Plain",
-            "Printed",
-            "Striped",
-            "Polka Dot",
-            "Checked",
-            "Embroidered"
-
-        ]
-
+        types: ["Crop Top","Basic Top","Tank Top","Halter Top","Tube Top","Off-Shoulder Top","One-Shoulder Top","Peplum Top","Corset Top","Ruffle Top","Tunic","Oversized Top"],
+        fabrics: ["Cotton","Satin","Chiffon","Linen","Denim","Rayon","Polyester"],
+        patterns: ["Floral","Plain","Printed","Striped","Polka Dot","Checked","Embroidered"]
     },
-
-
-    /* ================= SHIRTS ================= */
-
     "Shirts": {
-
-        types: [
-
-            "Formal Shirt",
-            "Casual Shirt",
-            "Oversized Shirt",
-            "Cropped Shirt",
-            "Denim Shirt",
-            "Linen Shirt",
-            "Flannel Shirt",
-            "Satin Shirt",
-            "Printed Shirt",
-            "Striped Shirt"
-
-        ],
-
-        fabrics: [
-
-            "Cotton",
-            "Linen",
-            "Denim",
-            "Rayon",
-            "Silk",
-            "Satin",
-            "Polyester"
-
-        ],
-
-        patterns: [
-
-            "Plain",
-            "Checked",
-            "Striped",
-            "Floral",
-            "Printed",
-            "Embroidered"
-
-        ]
-
+        types: ["Formal Shirt","Casual Shirt","Oversized Shirt","Cropped Shirt","Denim Shirt","Linen Shirt","Flannel Shirt","Satin Shirt","Printed Shirt","Striped Shirt"],
+        fabrics: ["Cotton","Linen","Denim","Rayon","Silk","Satin","Polyester"],
+        patterns: ["Plain","Checked","Striped","Floral","Printed","Embroidered"]
     },
-
-
-    /* ================= JEANS ================= */
-
     "Jeans": {
-
-        types: [
-
-            "Skinny Fit",
-            "Slim Fit",
-            "Straight Fit",
-            "Mom Fit",
-            "Boyfriend Fit",
-            "Baggy Fit",
-            "Wide-Leg",
-            "Bootcut",
-            "Flared",
-            "Low-Rise",
-            "Mid-Rise",
-            "High-Rise"
-
-        ],
-
-        fabrics: [
-
-            "Denim",
-            "Stretch Denim"
-
-        ],
-
-        patterns: [
-
-            "Plain",
-            "Ripped",
-            "Distressed",
-            "Embroidered",
-            "Printed"
-
-        ]
-
+        types: ["Skinny Fit","Slim Fit","Straight Fit","Mom Fit","Boyfriend Fit","Baggy Fit","Wide-Leg","Bootcut","Flared","Low-Rise","Mid-Rise","High-Rise"],
+        fabrics: ["Denim","Stretch Denim"],
+        patterns: ["Plain","Ripped","Distressed","Embroidered","Printed"]
     },
-
-
-    /* ================= BOTTOMWEAR ================= */
-
     "Bottomwear": {
-
-        types: [
-
-            "Trousers",
-            "Cargo Pants",
-            "Wide-Leg Pants",
-            "Palazzos",
-            "Shorts",
-            "Mini Skirt",
-            "Midi Skirt",
-            "Maxi Skirt",
-            "Joggers",
-            "Leggings"
-
-        ],
-
-        fabrics: [
-
-            "Cotton",
-            "Denim",
-            "Linen",
-            "Rayon",
-            "Polyester",
-            "Corduroy"
-
-        ],
-
-        patterns: [
-
-            "Plain",
-            "Floral",
-            "Printed",
-            "Checked",
-            "Striped",
-            "Embroidered"
-
-        ]
-
+        types: ["Trousers","Cargo Pants","Wide-Leg Pants","Palazzos","Shorts","Mini Skirt","Midi Skirt","Maxi Skirt","Joggers","Leggings"],
+        fabrics: ["Cotton","Denim","Linen","Rayon","Polyester","Corduroy"],
+        patterns: ["Plain","Floral","Printed","Checked","Striped","Embroidered"]
     },
-
-
-    /* ================= ETHNIC ================= */
-
     "Ethnic Wear": {
-
-        types: [
-
-            "Kurti",
-            "Kurta Set",
-            "Anarkali",
-            "Salwar Suit",
-            "Sharara Set",
-            "Lehenga",
-            "Saree",
-            "Half Saree",
-            "Palazzo Set",
-            "Churidar Set",
-            "Ethnic Dress",
-            "Ethnic Co-ord"
-
-        ],
-
-        fabrics: [
-
-            "Cotton",
-            "Silk",
-            "Georgette",
-            "Chiffon",
-            "Rayon",
-            "Linen",
-            "Velvet",
-            "Organza"
-
-        ],
-
-        patterns: [
-
-            "Block Print",
-            "Floral",
-            "Embroidery",
-            "Mirror Work",
-            "Printed",
-            "Plain",
-            "Zari",
-            "Sequined"
-
-        ]
-
+        types: ["Kurti","Kurta Set","Anarkali","Salwar Suit","Sharara Set","Lehenga","Saree","Half Saree","Palazzo Set","Churidar Set","Ethnic Dress","Ethnic Co-ord"],
+        fabrics: ["Cotton","Silk","Georgette","Chiffon","Rayon","Linen","Velvet","Organza"],
+        patterns: ["Block Print","Floral","Embroidery","Mirror Work","Printed","Plain","Zari","Sequined"]
     },
-
-
-    /* ================= OUTERWEAR ================= */
-
     "Outerwear": {
-
-        types: [
-
-            "Denim Jacket",
-            "Leather Jacket",
-            "Bomber Jacket",
-            "Cropped Jacket",
-            "Oversized Jacket",
-            "Blazer",
-            "Trench Coat",
-            "Long Coat",
-            "Cardigan",
-            "Shrug",
-            "Hoodie",
-            "Sweatshirt",
-            "Vest",
-            "Poncho"
-
-        ],
-
-        fabrics: [
-
-            "Denim",
-            "Leather",
-            "Cotton",
-            "Wool",
-            "Fleece",
-            "Polyester",
-            "Velvet"
-
-        ],
-
-        patterns: [
-
-            "Plain",
-            "Printed",
-            "Embroidered",
-            "Floral",
-            "Checked",
-            "Striped"
-
-        ]
-
+        types: ["Denim Jacket","Leather Jacket","Bomber Jacket","Cropped Jacket","Oversized Jacket","Blazer","Trench Coat","Long Coat","Cardigan","Shrug","Hoodie","Sweatshirt","Vest","Poncho"],
+        fabrics: ["Denim","Leather","Cotton","Wool","Fleece","Polyester","Velvet"],
+        patterns: ["Plain","Printed","Embroidered","Floral","Checked","Striped"]
     },
-
-
-    /* ================= ACCESSORIES ================= */
-
     "Accessories": {
-
-        types: [
-
-            "Handbag",
-            "Tote Bag",
-            "Shoulder Bag",
-            "Crossbody Bag",
-            "Clutch",
-            "Backpack",
-            "Wallet",
-            "Belt",
-            "Sunglasses",
-            "Watch",
-            "Jewellery",
-            "Scarf",
-            "Cap / Hat",
-            "Hair Accessories"
-
-        ],
-
-        fabrics: [
-
-            "Leather",
-            "Fabric",
-            "Metal",
-            "Artificial Material",
-            "Cotton",
-            "Silk"
-
-        ],
-
-        patterns: [
-
-            "Plain",
-            "Printed",
-            "Embellished",
-            "Embroidered",
-            "Patterned"
-
-        ]
-
+        types: ["Handbag","Tote Bag","Shoulder Bag","Crossbody Bag","Clutch","Backpack","Wallet","Belt","Sunglasses","Watch","Jewellery","Scarf","Cap / Hat","Hair Accessories"],
+        fabrics: ["Leather","Fabric","Metal","Artificial Material","Cotton","Silk"],
+        patterns: ["Plain","Printed","Embellished","Embroidered","Patterned"]
     },
-
-
-    /* ================= FOOTWEAR ================= */
-
     "Footwear": {
-
-        types: [
-
-            "Sneakers",
-            "Heels",
-            "Flats",
-            "Sandals",
-            "Boots",
-            "Loafers",
-            "Mules",
-            "Wedges",
-            "Slides",
-            "Juttis"
-
-        ],
-
-        fabrics: [
-
-            "Leather",
-            "Synthetic",
-            "Canvas",
-            "Fabric",
-            "Suede"
-
-        ],
-
-        patterns: [
-
-            "Plain",
-            "Printed",
-            "Embellished",
-            "Embroidered",
-            "Patterned"
-
-        ]
-
+        types: ["Sneakers","Heels","Flats","Sandals","Boots","Loafers","Mules","Wedges","Slides","Juttis"],
+        fabrics: ["Leather","Synthetic","Canvas","Fabric","Suede"],
+        patterns: ["Plain","Printed","Embellished","Embroidered","Patterned"]
     }
-
 };
 
-
-
-/* ================= UPDATE DROPDOWN ================= */
-
-function updateOptions(
-    selectElement,
-    options,
-    placeholder
-) {
-
+function updateOptions(selectElement, options, placeholder) {
     selectElement.innerHTML = "";
-
-
-    const firstOption =
-        document.createElement("option");
-
-
+    const firstOption = document.createElement("option");
     firstOption.value = "";
-
-    firstOption.textContent =
-        placeholder;
-
-
-    selectElement.appendChild(
-        firstOption
-    );
-
+    firstOption.textContent = placeholder;
+    selectElement.appendChild(firstOption);
 
     options.forEach(function(option) {
-
-        const optionElement =
-            document.createElement("option");
-
-
-        optionElement.value =
-            option;
-
-
-        optionElement.textContent =
-            option;
-
-
-        selectElement.appendChild(
-            optionElement
-        );
-
+        const optionElement = document.createElement("option");
+        optionElement.value = option;
+        optionElement.textContent = option;
+        selectElement.appendChild(optionElement);
     });
-
 }
 
+category.addEventListener("change", function() {
+    const data = categoryData[category.value];
 
-
-/* ================= CATEGORY CHANGE ================= */
-
-category.addEventListener(
-    "change",
-    function() {
-
-        const selectedCategory =
-            category.value;
-
-
-        const data =
-            categoryData[selectedCategory];
-
-
-        if (!data) {
-
-            updateOptions(
-                subcategory,
-                [],
-                "Select category first"
-            );
-
-
-            updateOptions(
-                fabric,
-                [],
-                "Select fabric"
-            );
-
-
-            updateOptions(
-                pattern,
-                [],
-                "Select design"
-            );
-
-
-            return;
-        }
-
-
-        updateOptions(
-            subcategory,
-            data.types,
-            "Select type"
-        );
-
-
-        updateOptions(
-            fabric,
-            data.fabrics,
-            "Select fabric"
-        );
-
-
-        updateOptions(
-            pattern,
-            data.patterns,
-            "Select design"
-        );
-
+    if (!data) {
+        updateOptions(subcategory, [], "Select category first");
+        updateOptions(fabric, [], "Select fabric");
+        updateOptions(pattern, [], "Select design");
+        return;
     }
-);
 
+    updateOptions(subcategory, data.types, "Select type");
+    updateOptions(fabric, data.fabrics, "Select fabric");
+    updateOptions(pattern, data.patterns, "Select design");
+});
 </script>
 
-
 </body>
-
 </html>
-```
